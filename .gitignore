@@ -11,3 +11,5 @@ build/**/*
 *.orig.*
 
 package-lock.json
+
+.idea
