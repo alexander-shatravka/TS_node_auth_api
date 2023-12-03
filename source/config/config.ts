@@ -12,18 +12,18 @@ const MONGO_OPTIONS = {
     retryWrites: true
 };
 
-const MONGO_USERNAME = process.env.MONGO_USERNAME || 'superuser';
-const MONGO_PASSWORD = process.env.MONGO_USERNAME || 'supersecretpassword1';
-const MONGO_HOST = process.env.MONGO_URL || `cluster0.menvh.mongodb.net/sample?w=majority`;
+const MONGO_USERNAME = process.env.MONGO_USERNAME;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const MONGO_CLUSTER = process.env.MONGO_CLUSTER;
 
 const MONGO = {
-    log: 'hui',
-    host: MONGO_HOST,
+    log: 'testLog',
+    host: MONGO_CLUSTER,
     password: MONGO_PASSWORD,
     username: MONGO_USERNAME,
     options: MONGO_OPTIONS,
-    // url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}`
-    url: `mongodb+srv://idp:1111@cluster0.awdis.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_CLUSTER}`,
+
 };
 
 const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
