@@ -1,0 +1,189 @@
+[
+  {
+    "name": "The Great Gatsby",
+    "isbn": "9780743273565",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Fiction",
+    "publisher": "Scribner",
+    "description": "A novel set in the 1920s that tells the story of Jay Gatsby's love for Daisy Buchanan.",
+    "publishedDate": "1925-04-10",
+    "image": "https://example.com/great-gatsby.jpg",
+    "rating": 4.5
+  },
+  {
+    "name": "To Kill a Mockingbird",
+    "isbn": "9780061120084",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "publisher": "J.B. Lippincott & Co.",
+    "description": "",
+    "publishedDate": "1960-07-11",
+    "image": "https://example.com/to-kill-a-mockingbird.jpg",
+    "rating": 4.8
+  },
+  {
+    "name": "1984",
+    "isbn": "9780451524935",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "publisher": "Secker & Warburg",
+    "description": "",
+    "publishedDate": "1949-06-08",
+    "image": "https://example.com/1984.jpg",
+    "rating": 4.7
+  },
+  {
+    "name": "Pride and Prejudice",
+    "isbn": "9780141439518",
+    "author": "Jane Austen",
+    "genre": "Romance",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.6
+  },
+  {
+    "name": "The Catcher in the Rye",
+    "isbn": "9780316769488",
+    "author": "J.D. Salinger",
+    "genre": "Fiction",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.3
+  },
+  {
+    "name": "The Hobbit",
+    "isbn": "9780547928227",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.8
+  },
+  {
+    "name": "The Alchemist",
+    "isbn": "9780061122415",
+    "author": "Paulo Coelho",
+    "genre": "Adventure",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.5
+  },
+  {
+    "name": "Brave New World",
+    "isbn": "9780060850524",
+    "author": "Aldous Huxley",
+    "genre": "Dystopian",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.4
+  },
+  {
+    "name": "Fahrenheit 451",
+    "isbn": "9781451673319",
+    "author": "Ray Bradbury",
+    "genre": "Dystopian",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.2
+  },
+  {
+    "name": "The Picture of Dorian Gray",
+    "isbn": "9780141439570",
+    "author": "Oscar Wilde",
+    "genre": "Philosophical Fiction",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.1
+  },
+  {
+    "name": "The Kite Runner",
+    "isbn": "9781594631931",
+    "author": "Khaled Hosseini",
+    "genre": "Fiction",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.7
+  },
+  {
+    "name": "The Book Thief",
+    "isbn": "9780375842207",
+    "author": "Markus Zusak",
+    "genre": "Historical Fiction",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.6
+  },
+  {
+    "name": "The Fault in Our Stars",
+    "isbn": "9780525478812",
+    "author": "John Green",
+    "genre": "Young Adult Fiction",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.5
+  },
+  {
+    "name": "The Hunger Games",
+    "isbn": "9780439023528",
+    "author": "Suzanne Collins",
+    "genre": "Dystopian",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.4
+  },
+  {
+    "name": "Harry Potter and the Sorcerer's Stone",
+    "isbn": "9780439708180",
+    "author": "J.K. Rowling",
+    "genre": "Fantasy",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.9
+  },
+  {
+    "name": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+    "isbn": "9780064404990",
+    "author": "C.S. Lewis",
+    "genre": "Fantasy",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.8
+  },
+  {
+    "name": "The Da Vinci Code",
+    "isbn": "9780307474278",
+    "author": "Dan Brown",
+    "genre": "Mystery",
+    "publisher": "",
+    "description": "",
+    "publishedDate": "",
+    "image": "",
+    "rating": 4.3
+  }
+]

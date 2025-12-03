@@ -15,10 +15,15 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-const register = (req: Request, res: Response, next: NextFunction) => {
-  const { username, password } = req.body;
+const register = async (req: Request, res: Response, next: NextFunction) => {
+  const {
+    username,
+    password,
+    firstName,
+    lastName,
+  } = req.body;
 
-  bcryptjs.hash(password, 10, (hashError, hash) => {
+  bcryptjs.hash(password, 10, async (hashError, hash) => {
     if (hashError) {
       return res.status(401).json({
         message: hashError.message,
@@ -26,10 +31,30 @@ const register = (req: Request, res: Response, next: NextFunction) => {
       });
     }
 
+    // Add unique username check:
+    if (!username || !password) {
+      return res.status(400).json({
+        message: 'Username and password are required'
+      });
+    }
+
+    const isUsernameTaken = await User.findOne({ username })
+      .then(user => user !== null);
+
+    if (isUsernameTaken) {
+      return res.status(409).json({
+        message: 'Username is already taken'
+      });
+    }
+
+
     const _user = new User({
       _id: new mongoose.Types.ObjectId(),
       username,
-      password: hash
+      firstName,
+      lastName,
+      password: hash,
+      role: 'user'
     });
 
     return _user
@@ -63,37 +88,35 @@ const login = (req: Request, res: Response, next: NextFunction) => {
         });
       }
 
-      return res.status(200).json({
-        message: 'Auth successful',
-        token: '(token_sample)awdawdwad',
-        user: users[0]
-      });
-
-      // TODO: find and fix issue with bcrypt compare - looks like it's not working
-
-      // bcryptjs.compare(password, users[0].password, (error, result) => {
-      //   console.log('bcrypt compare error, reuslt', error, result);
-      //   if (error) {
-      //     return res.status(401).json({
-      //       message: 'Password Mismatch'
-      //     });
-      //   } else if (result) {
-      //     signJWT(users[0], (_error, token) => {
-      //       if (_error) {
-      //         return res.status(500).json({
-      //           message: _error.message,
-      //           error: _error
-      //         });
-      //       } else if (token) {
-      //         return res.status(200).json({
-      //           message: 'Auth successful',
-      //           token: token,
-      //           user: users[0]
-      //         });
-      //       }
-      //     });
-      //   }
+      // return res.status(200).json({
+      //   message: 'Auth successful',
+      //   token: '(token_sample)awdawdwad',
+      //   user: users[0]
       // });
+
+      bcryptjs.compare(password, users[0].password, (error, result) => {
+        console.log('bcrypt compare error, reuslt', error, result);
+        if (error) {
+          return res.status(401).json({
+            message: 'Password Mismatch'
+          });
+        } else if (result) {
+          signJWT(users[0], (_error, token) => {
+            if (_error) {
+              return res.status(500).json({
+                message: _error.message,
+                error: _error
+              });
+            } else if (token) {
+              return res.status(200).json({
+                message: 'Auth successful',
+                token: token,
+                user: users[0]
+              });
+            }
+          });
+        }
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -106,58 +129,60 @@ const login = (req: Request, res: Response, next: NextFunction) => {
 const logout = (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
 
+  const { username, password } = req.body;
+
   User.find({ token: authorization })
     .exec()
     .then((users) => {
-      return res.status(201).json({
-        message: 'Successful logged out'
-      });
-      // if (users.length !== 1) {
-      //     return res.status(401).json({
-      //         message: 'Unauthorized'
-      //     });
-      // }
-      // console.log('user', users[0]);
+      // return res.status(201).json({
+      //   message: 'Successful logged out'
+      // });
+      if (users.length !== 1) {
+        return res.status(401).json({
+          message: 'Unauthorized'
+        });
+      }
+      console.log('user', users[0]);
     });
 
-  // User.find({ username })
-  //     .exec()
-  //     .then((users) => {2
-  //         if (users.length !== 1) {
-  //             return res.status(401).json({
-  //                 message: 'Unauthorized'
-  //             });
-  //         }
-  //
-  //         bcryptjs.compare(password, users[0].password, (error, result) => {
-  //             if (error) {
-  //                 return res.status(401).json({
-  //                     message: 'Password Mismatch'
-  //                 });
-  //             } else if (result) {
-  //                 signJWT(users[0], (_error, token) => {
-  //                     if (_error) {
-  //                         return res.status(500).json({
-  //                             message: _error.message,
-  //                             error: _error
-  //                         });
-  //                     } else if (token) {
-  //                         return res.status(200).json({
-  //                             message: 'Auth successful',
-  //                             token: token,
-  //                             user: users[0]
-  //                         });
-  //                     }
-  //                 });
-  //             }
-  //         });
-  //     })
-  //     .catch((err) => {
-  //         console.log(err);
-  //         res.status(500).json({
-  //             error: err
-  //         });
-  //     });
+  User.find({ username })
+    .exec()
+    .then((users) => {
+      if (users.length !== 1) {
+        return res.status(401).json({
+          message: 'Unauthorized'
+        });
+      }
+
+      bcryptjs.compare(password, users[0].password, (error, result) => {
+        if (error) {
+          return res.status(401).json({
+            message: 'Password Mismatch'
+          });
+        } else if (result) {
+          signJWT(users[0], (_error, token) => {
+            if (_error) {
+              return res.status(500).json({
+                message: _error.message,
+                error: _error
+              });
+            } else if (token) {
+              return res.status(200).json({
+                message: 'Auth successful',
+                token: token,
+                user: users[0]
+              });
+            }
+          });
+        }
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
 };
 
 const getAllUsers = (req: Request, res: Response, next: NextFunction) => {

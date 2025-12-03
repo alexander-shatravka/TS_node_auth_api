@@ -7,16 +7,20 @@ const NAMESPACE = 'Auth';
 
 const signJWT = (user: IUser, callback: (error: Error | null, token: string | null) => void): void => {
   const timeSinceEpoch = new Date().getTime();
-  const expirationTime = timeSinceEpoch + Number(config.server.token.expireTime) * 100000;
+  const expirationTime = timeSinceEpoch + Number(config.server.token.expireTime) * 1000;
   const expirationTimeInSeconds = Math.floor(expirationTime / 1000);
 
   logging.info(NAMESPACE, `Attempting to sign token for ${user._id}`);
 
+  const payload = {
+    id: user._id,
+    email: user.username,
+    role: user.role
+  };
+
   try {
     jwt.sign(
-      {
-        username: user.username
-      },
+      payload,
       config.server.token.secret,
       {
         issuer: config.server.token.issuer,

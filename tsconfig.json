@@ -4,6 +4,12 @@
     "source/**/*"
   ],
   "compilerOptions": {
+    /* Basic Options */
+//    "sourceRoot": "./source",
+    "baseUrl": ".",
+    "paths": {
+      "@": ["./source"], /* Specify the root path for TypeScript source files. */
+    },
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */

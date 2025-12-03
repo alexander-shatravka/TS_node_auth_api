@@ -4,6 +4,7 @@ import express from 'express';
 import logging from './config/logging';
 import config from './config/config';
 import userRoutes from './routes/user';
+import bookRoutes from './routes/book';
 import mongoose from 'mongoose';
 
 const NAMESPACE = 'Server';
@@ -50,7 +51,8 @@ router.use((req, res, next) => {
 });
 
 /** Routes go here */
-router.use('/users', userRoutes);
+router.use('/user', userRoutes);
+router.use('/book', bookRoutes);
 
 /** Error handling */
 router.use((req, res, next) => {
